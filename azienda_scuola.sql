@@ -1,5 +1,19 @@
 create database Aziende_scuola;
 
+use Aziende_scuola;
+
+create table Users(
+	id_user bigint auto_increment primary key,
+	nome varchar(50) not null,
+	cognome varchar(50) not null,
+	data_nascita date not null,
+	numero_tel varchar(255),
+	token varchar(10),
+	username varchar(50) not null unique,
+	email varchar(255) not null unique,
+	password varchar(255) not null
+);
+
 create table Azienda(
   id_azienda bigint auto_increment primary key,
   ragione_sociale varchar(100) not null,
@@ -41,18 +55,6 @@ create table Azienda_usa_tech(
 );
 
 
-create table Users(
-	id_user bigint auto_increment primary key,
-	nome varchar(50) not null,
-	cognome varchar(50) not null,
-	data_nascita date not null,
-	numero_tel varchar(255),
-	token varchar(10),
-	username varchar(50) not null unique,
-	email varchar(255) not null unique,
-	password varchar(255) not null
-);
-
 create table Risorsa_richiesta(
   id_risorse_richiesta bigint auto_increment primary key,
   id_azienda bigint not null,
@@ -68,8 +70,8 @@ create table Risorsa_richiesta(
 create table Risorse_rischiesta_teck(
 	id_ris_teck bigint auto_increment primary key,
 	id_risorse_richieste bigint,
-	id_tecnologia bigint
-	foreign key(id_risorse_richieste) references Risorsa_richiesta(id_risorse_richieste),
+	id_tecnologia bigint,
+	foreign key(id_risorse_richieste) references Risorsa_richiesta(id_risorse_richiesta),
     foreign key(id_tecnologia) references Tecnologia(id_tecnologia)
 );
 
